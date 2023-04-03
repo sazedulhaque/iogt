@@ -33,6 +33,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 INSTALLED_APPS = [
     'home',
     'search',
+    'iogt_article_api',
     'iogt_users',
     'comments',
     'iogt_content_migration',
@@ -71,6 +72,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'rest_framework',
+    'rest_framework.authtoken',
     'sass_processor',
     'translation_manager',
     'health_check',
@@ -474,6 +476,7 @@ WAGTAILTRANSFER_LOOKUP_FIELDS = {
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
