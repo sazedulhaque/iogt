@@ -5,9 +5,12 @@ from django.urls import include, path, re_path
 from django.views.i18n import JavaScriptCatalog
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
-from rest_framework.authtoken.views import obtain_auth_token
 from wagtail.images.views.serve import ServeView
 from webpush.views import save_info
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 from home.views import get_manifest, LogoutRedirectHackView
 from iogt_article_api.urls import router
@@ -67,7 +70,8 @@ urlpatterns = api_url_patterns + [
     *i18n_patterns(path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog')),
     path('health-check/', include('health_check.urls')),
     path('page-tree/<int:page_id>/', PageTreeAPIView.as_view(), name='page_tree'),
-    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/v1/articles/', include(router.urls)),
     path('api/docs/', schema_view.with_ui('swagger'), name='swagger'),
     path('webpush/subscribe/', save_info, name='save_webpush_info'),
