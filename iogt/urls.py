@@ -73,7 +73,7 @@ urlpatterns = api_url_patterns + [
     path('page-tree/<int:page_id>/', PageTreeAPIView.as_view(), name='page_tree'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/v1/articles/', include(router.urls)),
+    path('api/v1/', include(router.urls)),
     path('api/docs/', schema_view.with_ui('swagger'), name='swagger'),
     path('webpush/subscribe/', save_info, name='save_webpush_info'),
 ]
