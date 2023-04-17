@@ -16,4 +16,4 @@ class ArticleViewSet(mixins.RetrieveModelMixin,
     serializer_class = ArticleSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filterset_class = ArticleFilter
-    queryset = Article.objects.filter(alias_of_id__isnull=False)
+    queryset = Article.objects.filter()
