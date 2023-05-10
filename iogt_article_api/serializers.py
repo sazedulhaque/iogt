@@ -19,6 +19,7 @@ class ArticleSerializer(serializers.ModelSerializer):
             'latest_revision_created_at',
             'first_published_at',
             'last_published_at',
+            'slug',
             'live'
         ]
 
