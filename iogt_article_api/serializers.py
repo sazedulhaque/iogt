@@ -26,5 +26,6 @@ class ArticleSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         data = super().update(instance, validated_data)
         instance.live = False
+        instance.alias_of_id = None
         instance.save()
         return data
