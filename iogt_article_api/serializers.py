@@ -9,6 +9,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Article
+        read_only_fields = ('slug', 'first_published_at')
         fields = [
             'id',
             'language',
