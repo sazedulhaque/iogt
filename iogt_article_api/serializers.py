@@ -1,4 +1,7 @@
+
+
 from rest_framework import serializers
+from wagtail_localize.models import TranslationSource, Translation
 
 from home import models
 
@@ -26,7 +29,19 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         data = super().update(instance, validated_data)
+        # ----------------------------------------------------
+        # unpublished to verify the Article by Moderator
         instance.live = False
+        # ----------------------------------------------------
+        # In this section we reduce the manual work of
+        # stop sync and also keep the option to undo it
         instance.alias_of_id = None
+        translation_obj = TranslationSource.objects.filter(object_id=instance.translation_key)
+        if translation_obj.exist():
+            Translation.objects.get_or_create(
+                source=translation_obj.last(),
+                target_locale=instance.locale,
+                enabled=False
+            )
         instance.save()
         return data
