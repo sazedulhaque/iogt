@@ -1,5 +1,4 @@
-
-
+from django.db import transaction
 from rest_framework import serializers
 from wagtail_localize.models import TranslationSource, Translation
 
@@ -27,6 +26,7 @@ class ArticleSerializer(serializers.ModelSerializer):
             'live'
         ]
 
+    @transaction.atomic
     def update(self, instance, validated_data):
         data = super().update(instance, validated_data)
         # ----------------------------------------------------
@@ -36,12 +36,12 @@ class ArticleSerializer(serializers.ModelSerializer):
         # In this section we reduce the manual work of
         # stop sync and also keep the option to undo it
         instance.alias_of_id = None
+        instance.save()
         translation_obj = TranslationSource.objects.filter(object_id=instance.translation_key)
-        if translation_obj.exist():
+        if translation_obj.exists():
             Translation.objects.get_or_create(
                 source=translation_obj.last(),
                 target_locale=instance.locale,
                 enabled=False
             )
-        instance.save()
         return data
