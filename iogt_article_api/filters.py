@@ -8,4 +8,4 @@ class ArticleFilter(filters.FilterSet):
 
     class Meta:
         model = Article
-        fields = {'live', 'slug'}
+        fields = {'live', 'slug', 'url_path'}

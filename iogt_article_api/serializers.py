@@ -7,11 +7,12 @@ from home import models
 
 class ArticleSerializer(serializers.ModelSerializer):
     language = serializers.CharField(source='locale.get_display_name', read_only=True)
+    language_code = serializers.CharField(source='locale.language_code', read_only=True)
     owners_email = serializers.CharField(source='owner.email', read_only=True)
 
     class Meta:
         model = models.Article
-        read_only_fields = ('slug', 'first_published_at')
+        read_only_fields = ('slug', 'first_published_at', 'url_path', 'language_code')
         fields = [
             'id',
             'language',
@@ -23,6 +24,8 @@ class ArticleSerializer(serializers.ModelSerializer):
             'first_published_at',
             'last_published_at',
             'slug',
+            'url_path',
+            'language_code',
             'live'
         ]
 

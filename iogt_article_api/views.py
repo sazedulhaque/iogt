@@ -16,6 +16,6 @@ class ArticleViewSet(mixins.RetrieveModelMixin,
     filter_backends = [filters.SearchFilter, filters.OrderingFilter, django_filters.rest_framework.DjangoFilterBackend]
     filterset_class = ArticleFilter
     queryset = Article.objects.filter()
-    search_fields = ['slug', 'title', 'body']
-    ordering_fields = ['slug', 'title', 'locale', 'id', 'latest_revision_created_at']
+    search_fields = ['slug', 'title', 'body', 'url_path']
+    ordering_fields = ['slug', 'title', 'locale', 'id', 'latest_revision_created_at', 'url_path']
     ordering = ['slug']
