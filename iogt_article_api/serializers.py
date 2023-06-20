@@ -12,7 +12,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Article
-        read_only_fields = ('slug', 'first_published_at', 'url_path', 'language_code')
+        read_only_fields = ('slug', 'first_published_at', 'url_path', 'language_code', 'translation_key')
         fields = [
             'id',
             'language',
@@ -26,6 +26,7 @@ class ArticleSerializer(serializers.ModelSerializer):
             'slug',
             'url_path',
             'language_code',
+            'translation_key',
             'live'
         ]
 
