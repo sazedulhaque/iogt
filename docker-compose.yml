@@ -18,7 +18,7 @@ services:
       WAGTAILTRANSFER_SOURCE_NAME: iogt_global
       WAGTAILTRANSFER_SOURCE_BASE_URL: https://example.com/wagtail-transfer/
       WAGTAILTRANSFER_SOURCE_SECRET_KEY: wagtailtransfer-source-secret-key
-      BASE_URL: 'http://localhost:8000'
+      BASE_URL: 'http://localhost:5000'
       VAPID_PUBLIC_KEY: ''
       VAPID_PRIVATE_KEY: ''
       VAPID_ADMIN_EMAIL: ''
@@ -31,11 +31,11 @@ services:
       SUPERSET_PASSWORD: ''
       PUSH_NOTIFICATION: 'enable'
       JQUERY: 'enable'
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:5000
     volumes:
       - ./:/app/
     ports:
-      - "8000:8000"
+      - "5000:5000"
     depends_on:
       - elasticsearch
       - database
@@ -47,7 +47,7 @@ services:
     volumes:
       - es-data01:/usr/share/elasticsearch/data
     ports:
-      - "9200:9200"
+      - "9300:9300"
 
   database:
     image: postgres:alpine

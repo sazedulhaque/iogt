@@ -7,7 +7,7 @@ services:
       context: ./
       dockerfile: Dockerfile.dev
     environment:
-      BASE_URL: 'http://localhost:8000'
+      BASE_URL: 'http://localhost:5000'
       DB_CONN_MAX_AGE: '600'
       DB_HOST: db
       DB_NAME: iogt
@@ -23,11 +23,11 @@ services:
       WAGTAILTRANSFER_SOURCE_NAME: iogt_global
       WAGTAILTRANSFER_SOURCE_BASE_URL: https://example.com/wagtail-transfer/
       WAGTAILTRANSFER_SOURCE_SECRET_KEY: wagtailtransfer-source-secret-key
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:5000
     volumes:
       - ./:/app/
     ports:
-      - '8000:8000'
+      - '5000:5000'
     depends_on:
       - elasticsearch
       - db
@@ -51,7 +51,7 @@ services:
     volumes:
       - iogt_elasticsearch_data:/usr/share/elasticsearch/data
     ports:
-      - "9200:9200"
+      - "9300:9300"
 
 volumes:
   iogt_postgres_data:

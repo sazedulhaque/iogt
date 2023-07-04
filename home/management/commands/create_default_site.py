@@ -24,7 +24,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         domain = options.get('domain') or 'localhost'
-        port = options.get('port') or 8000
+        port = options.get('port') or 5000
 
         __, created = DjangoSite.objects.update_or_create(pk=settings.SITE_ID, defaults={
             'domain': domain,

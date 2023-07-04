@@ -21,7 +21,7 @@ class PageViewGroupPermissionTests(TestCase):
         self.user = UserFactory()
 
         Site.objects.all().delete()
-        self.site = SiteFactory(site_name='IoGT', port=8000, is_default_site=True)
+        self.site = SiteFactory(site_name='IoGT', port=5000, is_default_site=True)
         self.home_page = HomePageFactory(parent=self.site.root_page)
 
         self.group_restricted_article = ArticleFactory(parent=self.home_page)

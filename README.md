@@ -45,7 +45,7 @@ Finally, start the server.
 ./manage.py runserver
 ```
 
-Once running, navigate to http://localhost:8000 in your browser.
+Once running, navigate to http://localhost:5000 in your browser.
 
 
 ### Running ElasticSearch (Optional)
@@ -56,7 +56,7 @@ Once running, navigate to http://localhost:8000 in your browser.
    WAGTAILSEARCH_BACKENDS = {
     'default': {
         'BACKEND': 'wagtail.search.backends.elasticsearch7',
-        'URLS': ['http://localhost:9200'],
+        'URLS': ['http://localhost:9300'],
         'INDEX': 'iogt',
         'TIMEOUT': 5,
         'OPTIONS': {},

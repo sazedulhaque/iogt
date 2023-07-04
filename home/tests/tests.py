@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 class LimitPageChooserHookTests(TestCase):
     def setUp(self):
         Site.objects.all().delete()
-        self.site = SiteFactory(site_name='IoGT', port=8000, is_default_site=True)
+        self.site = SiteFactory(site_name='IoGT', port=5000, is_default_site=True)
         self.home_page = HomePageFactory(parent=self.site.root_page)
 
         self.article01 = ArticleFactory(parent=self.home_page)

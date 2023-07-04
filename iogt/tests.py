@@ -24,7 +24,7 @@ class PageTreeAPIViewTests(TestCase):
     def setUp(self):
         self.url_name = 'page_tree'
         Site.objects.all().delete()
-        self.site = SiteFactory(site_name='IoGT', port=8000, is_default_site=True)
+        self.site = SiteFactory(site_name='IoGT', port=5000, is_default_site=True)
         self.en_locale = LocaleFactory(language_code='en')
         self.ar_locale = LocaleFactory(language_code='ar')
         self.en_home_page = HomePageFactory(parent=self.site.root_page, locale=self.en_locale)
