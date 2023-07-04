@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.6'
 
 services:
 
@@ -36,31 +36,4 @@ services:
       - ./:/app/
     ports:
       - "5000:5000"
-    depends_on:
-      - elasticsearch
-      - database
 
-  elasticsearch:
-    image: 'docker.elastic.co/elasticsearch/elasticsearch:7.12.1'
-    environment:
-      - discovery.type=single-node
-    volumes:
-      - es-data01:/usr/share/elasticsearch/data
-    ports:
-      - "9300:9300"
-
-  database:
-    image: postgres:alpine
-    restart: unless-stopped
-    environment:
-      POSTGRES_PASSWORD: iogt
-    volumes:
-      - pg-data01:/var/lib/postgresql/data
-      - ./initdb.d:/docker-entrypoint-initdb.d
-    ports:
-      - 5432:5432
-
-
-volumes:
-  es-data01:
-  pg-data01:
